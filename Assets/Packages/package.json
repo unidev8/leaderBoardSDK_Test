@@ -1,0 +1,16 @@
+{
+    "name": "com.william.leaderboardsdk",
+    "displayName": "Leaderboard SDK",
+    "version": "1.0.0",
+    "description": "An SDK for getting leaderboards of server and client .",
+    "unity": {
+        "minimum": "2019.4",
+        "maximum": "2022.1"
+    },
+    "keywords": [
+      "leaderboard",
+      "sdk",
+      "unity"
+    ],
+    "dependencies": {}
+  }
