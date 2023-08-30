@@ -13,12 +13,6 @@ public class usingSDK : MonoBehaviour
     public ScrollRect scrView;
     public GameObject prefabText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void getClientLeaderBoard()
     {
         LeaderBoardSDK leaderboard = new LeaderBoardSDK();
@@ -29,13 +23,9 @@ public class usingSDK : MonoBehaviour
             GameObject textObject = GameObject.Instantiate(prefabText, scrView.transform );
             textObject.transform.SetParent(scrView.content.transform, false);
             TMP_Text textComponent = textObject.GetComponent<TMP_Text>();
-            textComponent.text = aleaderboard.profileID + ": " + aleaderboard.username + ": " + aleaderboard.score + ": " + aleaderboard.position;
+            textComponent.text = aleaderboard.profileID + ": " + aleaderboard.username + ": " 
+                + aleaderboard.score + ": " + aleaderboard.position;
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

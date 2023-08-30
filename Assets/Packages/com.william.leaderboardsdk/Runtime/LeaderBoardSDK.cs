@@ -18,30 +18,8 @@ public class LeaderBoardSDK : MonoBehaviour
         public int createAt;
     }
 
-    [System.Serializable]
-    public class aroundLeaderboards
-    {
-        public string profileID;
-        public string username;
-        public float score;
-        public int position;
-        public int createAt;
-    }
-
     private LeaderBoards[] leaderBoards; 
     private UnityWebRequest request;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public IEnumerator GetLeaderBoardAPIData (string url)
     {
@@ -59,6 +37,7 @@ public class LeaderBoardSDK : MonoBehaviour
             leaderBoards = JsonUtility.FromJson<LeaderBoards[]>(responseData);
         }
     }
+
     public LeaderBoards[] GetLeaderBoardsArray()
     {
         return leaderBoards;
