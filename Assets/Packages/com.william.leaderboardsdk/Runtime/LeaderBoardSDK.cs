@@ -23,7 +23,10 @@ public class LeaderBoardSDK : MonoBehaviour
 
     public IEnumerator GetLeaderBoardAPIData (string url)
     {
+
+
         UnityWebRequest request = UnityWebRequest.Get(url);
+        request.SetRequestHeader("x-auth-server", "gamedev.7b5a2bb8-dfa7-4a2d-ab12-2fc644b08503");
         yield return request.SendWebRequest ();
 
         if (request.result == UnityWebRequest.Result.ConnectionError ||
@@ -47,10 +50,4 @@ public class LeaderBoardSDK : MonoBehaviour
     {
 
     }
-}
-
-public static class ConstVars
-{
-    public static string clientURL = "https://api.arenavs.com/api/v2/gamedev/client/testgame/leaderboard/gameleaderboad";
-    public static string serverURL = "https://api.arenavs.com/api/v2/gamedev/server/testgame/leaderboard/gameleaderboad";
 }

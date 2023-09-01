@@ -13,10 +13,10 @@ public class usingSDK : MonoBehaviour
     public ScrollRect scrView;
     public GameObject prefabText;
 
-    public void getClientLeaderBoard()
+    public void getLeaderBoard()
     {
         LeaderBoardSDK leaderboard = new LeaderBoardSDK();
-        leaderboard.GetLeaderBoardAPIData(ConstVars.clientURL);
+        leaderboard.GetLeaderBoardAPIData(ConstVars.serverURL);
         LeaderBoards[] leaderboardarry = leaderboard.GetLeaderBoardsArray();
         foreach (LeaderBoards aleaderboard in leaderboardarry)
         {
@@ -28,4 +28,11 @@ public class usingSDK : MonoBehaviour
         }
     }
 
+}
+
+
+public static class ConstVars
+{
+    public static string clientURL = "https://api.arenavs.com/api/v2/gamedev/client/FIGHTER/leaderboard/test-task-version-1";
+    public static string serverURL = "https://api.arenavs.com/api/v2/gamedev/server/FIGHTER/leaderboard/test-task-version-1";
 }
