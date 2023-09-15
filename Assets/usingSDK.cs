@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static LeaderBoardSDK;
 using TMPro;
-
+using System.Threading.Tasks;
 
 
 public class usingSDK : MonoBehaviour
@@ -13,26 +13,34 @@ public class usingSDK : MonoBehaviour
     public ScrollRect scrView;
     public GameObject prefabText;
 
-    public void getLeaderBoard()
+    public async void GetLeaderBoard()
     {
-        LeaderBoardSDK leaderboard = new LeaderBoardSDK();
-        leaderboard.GetLeaderBoardAPIData(ConstVars.serverURL);
-        LeaderBoards[] leaderboardarry = leaderboard.GetLeaderBoardsArray();
-        foreach (LeaderBoards aleaderboard in leaderboardarry)
+        Debug.Log("Start Debug.log in usingSDK class");
+
+        LeaderBoardSDK leaderboardSDK = new LeaderBoardSDK();
+        Debug.Log("before await GetLeaderBoardAPIData in usingSDK class");
+        await leaderboardSDK.GetLeaderBoardAPIData(ConstVars.serverURL);
+        Debug.Log("after await GetLeaderBoardAPIData in usingSDK class");
+        LeaderBoards[] leaderboardArray;
+        leaderboardArray = leaderboardSDK.GetLeaderBoardsArray();
+        if (leaderboardArray == null)
+            return;
+        foreach (LeaderBoards aLeaderboard in leaderboardArray)
         {
             GameObject textObject = GameObject.Instantiate(prefabText, scrView.transform );
             textObject.transform.SetParent(scrView.content.transform, false);
             TMP_Text textComponent = textObject.GetComponent<TMP_Text>();
-            textComponent.text = aleaderboard.profileID + ": " + aleaderboard.username + ": " 
-                + aleaderboard.score + ": " + aleaderboard.position;
+            textComponent.text = aLeaderboard.profileID + ": " + aLeaderboard.username + ": " 
+                + aLeaderboard.score + ": " + aLeaderboard.position;
         }
     }
-
+    
 }
+
 
 
 public static class ConstVars
 {
-    public static string clientURL = "https://api.arenavs.com/api/v2/gamedev/client/FIGHTER/leaderboard/test-task-version-1";
-    public static string serverURL = "https://api.arenavs.com/api/v2/gamedev/server/FIGHTER/leaderboard/test-task-version-1";
+    public static string clientURL = "https://api.arenavs.com/api/v2/gamedev/client/fighter/leaderboard/test-task/1";
+    public static string serverURL = "https://api.arenavs.com/api/v2/gamedev/server/fighter/leaderboard/test-task/1";
 }
